@@ -1,0 +1,3 @@
+## Predicting Patient No-Shows
+
+The goal of this project is to use machine learning to predict which patients are likely to miss their appointments, using the provided dataset. The dataset contains 14 variables that could potentially be used as features, as well as a binary label (patient showed up to appointment, patient didn’t show up to appointment). The feature names are largely self-explanatory and include: age; gender; time between the date the appointment was made and the date of the actual appointment; whether the patient is diabetic, hypertensive, a smoker, or an alcoholic; and whether they were reminded via text message about the appointment.
