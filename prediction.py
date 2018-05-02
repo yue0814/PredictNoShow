@@ -115,7 +115,8 @@ params = {'num_leaves': 31, 'application': 'binary',
           }
 ltrain = lgb.Dataset(trainX, label=trainY)
 lval = lgb.Dataset(valX, label=valY)
-model3 = lgb.train(params, ltrain, num_boost_round=3000, valid_sets=lval, early_stopping_rounds=500)
+dtrain = lgb.Dataset(X, label=y)
+model3 = lgb.train(params, dtrain, num_boost_round=3000)#, valid_sets=lval, early_stopping_rounds=500)
 log_loss(y, model3.predict(X))
 
 xTrain = lgb.Dataset(X, label=y)

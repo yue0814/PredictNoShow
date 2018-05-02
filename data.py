@@ -21,8 +21,21 @@ def age_format(age):
 def transform(x):
     # 1
     # x_train = x_train[x_train.DaysUntilAppointment.apply(lambda x: True if x <= 30 else False)]
-    x.DateAppointmentWasMade = x.DateAppointmentWasMade.apply(lambda m: int(m.replace("-", "")))
-    x.DateOfAppointment = x.DateOfAppointment.apply(lambda m: int(m.replace("-", "")))
+    year_app_made = [l[0] for l in x.DateAppointmentWasMade.apply(lambda s: s.split("-"))]
+    month_app_made = [l[1] for l in x.DateAppointmentWasMade.apply(lambda s: s.split("-"))]
+    day_app_made =[l[2] for l in x.DateAppointmentWasMade.apply(lambda s: s.split("-"))]
+    x["year_app_made"] = year_app_made
+    x["month_app_made"] = month_app_made
+    x["day_app_made"] = day_app_made
+    year_app = [l[0] for l in x.DateOfAppointment.apply(lambda s: s.split("-"))]
+    month_app = [l[1] for l in x.DateOfAppointment.apply(lambda s: s.split("-"))]
+    day_app = [l[2] for l in x.DateOfAppointment.apply(lambda s: s.split("-"))]
+    x["year_app"] = year_app
+    x["month_app"] = month_app
+    x["day_app"] = day_app
+    x.DateAppointmentWasMade = x.DateAppointmentWasMade.apply(lambda s: int(s.replace("-", "")))
+    x.DateOfAppointment = x.DateOfAppointment.apply(lambda s: int(s.replace("-", "")))
+
     mms = MinMaxScaler()
     mms.fit(x.DateAppointmentWasMade.values.reshape(-1, 1))
     x.DateAppointmentWasMade = mms.transform(x.DateAppointmentWasMade.values.reshape(-1, 1))
