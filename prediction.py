@@ -26,6 +26,9 @@ X.pop("ID")
 status = X.pop("Status")
 y = np.array([1 if i == "No-Show" else 0 for i in status])
 
+# add features from DNN hidden layer
+X = pd.concat([X, pd.DataFrame(A1)], axis=1)
+
 # Grid Search
 # params = {"n_estimators": [10, 20, 30], "max_depth":[3, 5, 7, 9, 11],\
 #           "learning_rate": [0.01, 0.05, 0.1, 0.15, 0.2],\
